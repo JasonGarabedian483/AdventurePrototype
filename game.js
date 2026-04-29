@@ -92,13 +92,28 @@ class Demo2 extends AdventureScene {
     }
 }
 
+// intro scene, black screen that eventually fades to scene 1 of game starting in bedroom
 class Intro extends Phaser.Scene {
     constructor() {
         super('intro')
     }
+    preload() {
+        this.load.path = 'assets/';
+        this.load.image('bedroom', "Bedroom.jpg")
+    }
     create() {
-        this.add.text(50,50, "Adventure awaits!").setFontSize(50);
-        this.add.text(50,100, "Click anywhere to begin.").setFontSize(20);
+        const introText = this.add.text(300,50, "You feel oh so comfortable asleep in bed on a nice tuesday morning without a care in the world. Except something is wrong, there's this weird beeping sounds that seems very familiar... Oh no! Your alarm!", {
+            wordWrap: { width: 1500},
+        });
+        introText.setFontSize(50);
+        const wakeUpText = this.add.text(860,400, "Click anywhere to wake up!").setFontSize(50);
+
+        this.tweens.add({
+            targets: wakeUpText,
+            alpha: 0,
+            loop: -1,
+            yoyo: true,
+        })
         this.input.on('pointerdown', () => {
             this.cameras.main.fade(1000, 0,0,0);
             this.time.delayedCall(1000, () => this.scene.start('demo1'));
@@ -106,6 +121,11 @@ class Intro extends Phaser.Scene {
     }
 }
 
+class bedroomScene extends AdventureScene {
+    
+}
+
+// outro scene, fading to black from outside stairs as the player completes the game
 class Outro extends Phaser.Scene {
     constructor() {
         super('outro');
