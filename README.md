@@ -2,13 +2,13 @@ A simple adventure game by {who?} based on a simple adventure game engine by [Ad
 
 Code requirements:
 - **4+ scenes based on `AdventureScene`**: unsatisfied (name at least 4 of the classes).
-    - Bedroom scene
-    - Hallway scene
-    - Living room scene
-    - Kitchen scene
+    - bedroomScene
+    - hallwayScene
+    - livingroomScene
+    - kitchenScene
 - **2+ scenes *not* based on `AdventureScene`**: unsatisfied (name the classes).
-    - Intro scene
-    - Outro scene (stairs)
+    - introScene
+    - outroScene
 - **2+ methods or other enhancement added to the adventure game engine to simplify my scenes**:
     - Enhancement 1: unsatisfied (name the method and explain the use of it).
     - Enhancement 2: unsatisfied (name the method and explain the use of it).
@@ -17,7 +17,10 @@ Experience requirements:
 - **4+ locations in the game world**: unsatisfied (name at least 4 of the classes).
 - **2+ interactive objects in most scenes**: unsatisfied (describe two examples)
 - **Many objects have `pointerover` messages**: unsatisfied (describe two examples)
+    - Navigation arrows increase in size when player mouses over them
 - **Many objects have `pointerdown` effects**: unsatisfied (describe two examples)
+    - Navigation arrows
+    - Picking up items
 - **Some objects are themselves animated**: unsatisfied (describe two examples)
 
 Asset sources:

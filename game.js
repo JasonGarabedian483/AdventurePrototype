@@ -131,6 +131,7 @@ class bedroomScene extends AdventureScene {
         this.load.image('bedroom', 'Bedroom.jpg')
         this.load.image('phone', 'phone.png')
         this.load.image('wallet', 'wallet.png')
+        this.load.image('exitArrow', 'leftarrow.png')
     }
 
     onEnter() {
@@ -168,9 +169,47 @@ class bedroomScene extends AdventureScene {
                     onComplete: () => walletItem.destroy()
                 });
             })
+        
+        let exitArrow = this.add.image(400, 300, 'exitArrow');
+            exitArrow.setScale(6);
+            exitArrow.setInteractive();
+            exitArrow.on("pointerover", () => {
+                if (this.hasItem("💳 Wallet") && this.hasItem("📱 Phone")) {
+                    this.showMessage("to the hallway..");
+                }
+                else {
+                    this.showMessage("I'm missing something...");
+                }
+                this.tweens.add({
+                    targets: exitArrow,
+                    scaleX: 6.5,
+                    scaleY: 6.5,
+                    duration: 100,
+                    ease: 'Power1'
+                })
+            })
+
+            exitArrow.on("pointerout", () => {
+                this.tweens.add({
+                    targets: exitArrow,
+                    scaleX: 6,
+                    scaleY: 6,
+                    duration: 100,
+                    ease: 'Power1'
+                })
+            })
+
+            exitArrow.on("pointerdown", () => {
+                if (this.hasItem("💳 Wallet") && this.hasItem("📱 Phone")) {
+                    this.gotoScene('Hallway');
+                }
+            })
     }
 }
 
+class hallwayScene extends AdventureScene {
+    
+}
 // outro scene, fading to black from outside stairs as the player completes the game
 class Outro extends Phaser.Scene {
     constructor() {
