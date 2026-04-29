@@ -116,13 +116,59 @@ class Intro extends Phaser.Scene {
         })
         this.input.on('pointerdown', () => {
             this.cameras.main.fade(1000, 0,0,0);
-            this.time.delayedCall(1000, () => this.scene.start('demo1'));
+            this.time.delayedCall(1000, () => this.scene.start('Bedroom'));
         });
     }
 }
 
 class bedroomScene extends AdventureScene {
+    constructor() {
+        super('Bedroom')
+    }
     
+    preload() {
+        this.load.path = 'assets/';
+        this.load.image('bedroom', 'Bedroom.jpg')
+        this.load.image('phone', 'phone.png')
+        this.load.image('wallet', 'wallet.png')
+    }
+
+    onEnter() {
+        let bedroomImage = this.add.image(this.game.config.width * .375, this.game.config.height * .5, 'bedroom');
+            bedroomImage.setScale(.25);
+
+        let phoneItem = this.add.image(950, 675, 'phone');
+            phoneItem.setScale(3);
+            phoneItem.setAngle(105);
+            phoneItem.setInteractive();
+            phoneItem.on("pointerover", () => this.showMessage("My phone"));
+            phoneItem.on("pointerdown", () => {
+                this.showMessage("Wouldn't want to forget that");
+                this.gainItem('📱 Phone');
+                this.tweens.add({
+                    targets: phoneItem,
+                    alpha: 0,
+                    duration: 250,
+                    onComplete: () => phoneItem.destroy()
+                });
+            })
+
+        let walletItem = this.add.image(1150, 700, 'wallet');
+            walletItem.setScale(3);
+            walletItem.setAngle(15);
+            walletItem.setInteractive();
+            walletItem.on("pointerover", () => this.showMessage("My wallet"));
+            walletItem.on("pointerdown", () => {
+                this.showMessage("Can't get back in without my ID");
+                this.gainItem('💳 Wallet');
+                this.tweens.add({
+                    targets: walletItem,
+                    alpha: 0,
+                    duration: 250,
+                    onComplete: () => walletItem.destroy()
+                });
+            })
+    }
 }
 
 // outro scene, fading to black from outside stairs as the player completes the game
@@ -145,7 +191,7 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    scene: [Intro, Demo1, Demo2, Outro],
+    scene: [Intro, bedroomScene, Demo1, Demo2, Outro],
     title: "Adventure Game",
 });
 
