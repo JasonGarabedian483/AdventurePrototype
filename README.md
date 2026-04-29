@@ -2,7 +2,13 @@ A simple adventure game by {who?} based on a simple adventure game engine by [Ad
 
 Code requirements:
 - **4+ scenes based on `AdventureScene`**: unsatisfied (name at least 4 of the classes).
+    - Bedroom scene
+    - Hallway scene
+    - Living room scene
+    - Kitchen scene
 - **2+ scenes *not* based on `AdventureScene`**: unsatisfied (name the classes).
+    - Intro scene
+    - Outro scene (stairs)
 - **2+ methods or other enhancement added to the adventure game engine to simplify my scenes**:
     - Enhancement 1: unsatisfied (name the method and explain the use of it).
     - Enhancement 2: unsatisfied (name the method and explain the use of it).
