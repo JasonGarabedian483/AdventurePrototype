@@ -175,7 +175,7 @@ class bedroomScene extends AdventureScene {
             exitArrow.setInteractive();
             exitArrow.on("pointerover", () => {
                 if (this.hasItem("💳 Wallet") && this.hasItem("📱 Phone")) {
-                    this.showMessage("to the hallway..");
+                    this.showMessage("To the hallway..");
                 }
                 else {
                     this.showMessage("I'm missing something...");
@@ -208,6 +208,94 @@ class bedroomScene extends AdventureScene {
 }
 
 class hallwayScene extends AdventureScene {
+    constructor () {
+        super('Hallway')
+    }
+
+    preload() {
+        this.load.path = 'assets/';
+        this.load.image('hallway', 'Hallway.jpg')
+        this.load.image('brushteeth', 'brushteeth.png')
+        this.load.image('leftarrow', "leftarrow.png")
+    }
+
+    onEnter() {
+        let hallwayImage = this.add.image(this.game.config.width * .375, this.game.config.height * .5, 'hallway');
+            hallwayImage.setScale(.25);
+
+        let toothbrushImage = this.add.image(1150, 300, 'brushteeth');
+            toothbrushImage.setScale(4);
+            toothbrushImage.setAngle(10);
+            toothbrushImage.setInteractive();
+            toothbrushImage.on("pointerover", () => {
+                this.showMessage("Brush teeth");
+                this.tweens.add({
+                    targets: toothbrushImage,
+                    scaleX: 4.5,
+                    scaleY: 4.5,
+                    duration: 100,
+                    ease: 'Power1'
+                })
+            })
+            toothbrushImage.on("pointerout", () => {
+                this.tweens.add({
+                    targets: toothbrushImage,
+                    scaleX: 4,
+                    scaleY: 4,
+                    duration: 100,
+                    ease: "Power1",
+                })
+            })
+            toothbrushImage.on("pointerdown", () => {
+                this.showMessage("Ahh, minty fresh");
+                this.gainItem("🦷 Teeth cleaned");
+                this.tweens.add({
+                    targets: toothbrushImage,
+                    alpha: 0,
+                    duration: 250,
+                    onComplete: () => toothbrushImage.destroy()
+                })
+            })
+            
+        let exitArrow = this.add.image(300, 200, 'leftarrow');
+            exitArrow.setScale(6);
+            exitArrow.setAngle(180);
+            exitArrow.setInteractive();
+            exitArrow.on("pointerover", () => {
+                if (this.hasItem("🦷 Teeth cleaned")) {
+                    this.showMessage("To the living room");
+                }
+                else {
+                    this.showMessage("I should really brush my teeth");
+                }
+                this.tweens.add({
+                    targets: exitArrow,
+                    scaleX: 6.5,
+                    scaleY: 6.5,
+                    duration: 100,
+                    ease: 'Power1'
+                })
+            })
+
+            exitArrow.on("pointerout", () => {
+                this.tweens.add({
+                    targets: exitArrow,
+                    scaleX: 6,
+                    scaleY: 6,
+                    duration: 100,
+                    ease: 'Power1'
+                })
+            })
+
+            exitArrow.on("pointerdown", () => {
+                if (this.hasItem("🦷 Teeth cleaned")) {
+                    this.gotoScene('Livingroom')
+                }
+            })
+    }
+}
+
+class livingroomScene extends AdventureScene {
     
 }
 // outro scene, fading to black from outside stairs as the player completes the game
@@ -230,7 +318,7 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    scene: [Intro, bedroomScene, Demo1, Demo2, Outro],
+    scene: [Intro, bedroomScene, hallwayScene, Demo1, Demo2, Outro],
     title: "Adventure Game",
 });
 
