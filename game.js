@@ -229,7 +229,7 @@ class hallwayScene extends AdventureScene {
             toothbrushImage.setInteractive();
             toothbrushImage.on("pointerover", () => {
                 this.showMessage("Brush teeth");
-                this.tweens.add({
+                this.tweens.add({ // MAKE FUNCTION TO AUTOMATE GETTING BIGGER AND SMALLER
                     targets: toothbrushImage,
                     scaleX: 4.5,
                     scaleY: 4.5,
@@ -296,7 +296,35 @@ class hallwayScene extends AdventureScene {
 }
 
 class livingroomScene extends AdventureScene {
-    
+    constructor() {
+        super('Livingroom')
+    }
+
+    preload() {
+        this.load.path = 'assets/';
+        this.load.image('livingroom', 'LivingRoom.jpg')
+        this.load.image('bookbag', 'bookbag.png')
+    }
+
+    onEnter() {
+        let livingroomImage = this.add.image(this.game.config.width * .375, this.game.config.height * .5, 'livingroom');
+            livingroomImage.setScale(.25);
+
+        let bookbagItem = this.add.image(950, 625, 'bookbag');
+            bookbagItem.setScale(6);
+            bookbagItem.setInteractive();
+            bookbagItem.on("pointerover", () => this.showMessage("My bookbag"));
+            bookbagItem.on("pointerdown", () => {
+                this.showMessage("I'll definitely need this");
+                this.gainItem('🎒 Bookbag');
+                this.tweens.add({
+                    targets: bookbagItem,
+                    alpha: 0,
+                    duration: 250,
+                    onComplete: () => bookbagItem.destroy()
+                });
+            })
+    }
 }
 // outro scene, fading to black from outside stairs as the player completes the game
 class Outro extends Phaser.Scene {
@@ -318,7 +346,7 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    scene: [Intro, bedroomScene, hallwayScene, Demo1, Demo2, Outro],
+    scene: [Intro, bedroomScene, hallwayScene, livingroomScene, Demo1, Demo2, Outro],
     title: "Adventure Game",
 });
 
