@@ -104,6 +104,16 @@ class AdventureScene extends Phaser.Scene {
         });
     }
 
+    getBigger(target) {
+        this.tweens.add({
+            targets: target,
+            scaleX: target.scaleX + 0.5,
+            scaleY: target.scaleY + 0.5,
+            duration: 100,
+            ease: 'Power1'
+        });
+    }
+
     /**
      * Re-render the inventory panel. Called automatically by
      * {@link AdventureScene#gainItem} and {@link AdventureScene#loseItem};
@@ -227,6 +237,7 @@ class AdventureScene extends Phaser.Scene {
      *         .on('pointerdown', () => this.gotoScene('next_room'));
      * }
      */
+
     onEnter() {
         console.warn('This AdventureScene did not implement onEnter():', this.constructor.name);
     }

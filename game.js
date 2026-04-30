@@ -141,7 +141,7 @@ class bedroomScene extends AdventureScene {
         let phoneItem = this.add.image(950, 675, 'phone');
             phoneItem.setScale(3);
             phoneItem.setAngle(105);
-            phoneItem.setInteractive();
+            phoneItem.setInteractive({useHandCursor: true});
             phoneItem.on("pointerover", () => this.showMessage("My phone"));
             phoneItem.on("pointerdown", () => {
                 this.showMessage("Wouldn't want to forget that");
@@ -157,7 +157,7 @@ class bedroomScene extends AdventureScene {
         let walletItem = this.add.image(1150, 700, 'wallet');
             walletItem.setScale(3);
             walletItem.setAngle(15);
-            walletItem.setInteractive();
+            walletItem.setInteractive({useHandCursor: true});
             walletItem.on("pointerover", () => this.showMessage("My wallet"));
             walletItem.on("pointerdown", () => {
                 this.showMessage("Can't get back in without my ID");
@@ -172,7 +172,7 @@ class bedroomScene extends AdventureScene {
         
         let exitArrow = this.add.image(400, 300, 'exitArrow');
             exitArrow.setScale(6);
-            exitArrow.setInteractive();
+            exitArrow.setInteractive({useHandCursor: true});
             exitArrow.on("pointerover", () => {
                 if (this.hasItem("💳 Wallet") && this.hasItem("📱 Phone")) {
                     this.showMessage("To the hallway..");
@@ -226,16 +226,10 @@ class hallwayScene extends AdventureScene {
         let toothbrushImage = this.add.image(1150, 300, 'brushteeth');
             toothbrushImage.setScale(4);
             toothbrushImage.setAngle(10);
-            toothbrushImage.setInteractive();
+            toothbrushImage.setInteractive({useHandCursor: true});
             toothbrushImage.on("pointerover", () => {
                 this.showMessage("Brush teeth");
-                this.tweens.add({ // MAKE FUNCTION TO AUTOMATE GETTING BIGGER AND SMALLER
-                    targets: toothbrushImage,
-                    scaleX: 4.5,
-                    scaleY: 4.5,
-                    duration: 100,
-                    ease: 'Power1'
-                })
+                this.getBigger(toothbrushImage);
             })
             toothbrushImage.on("pointerout", () => {
                 this.tweens.add({
@@ -260,7 +254,7 @@ class hallwayScene extends AdventureScene {
         let exitArrow = this.add.image(300, 200, 'leftarrow');
             exitArrow.setScale(6);
             exitArrow.setAngle(180);
-            exitArrow.setInteractive();
+            exitArrow.setInteractive({useHandCursor: true});
             exitArrow.on("pointerover", () => {
                 if (this.hasItem("🦷 Teeth cleaned")) {
                     this.showMessage("To the living room");
@@ -294,7 +288,7 @@ class hallwayScene extends AdventureScene {
             })
     }
 }
-
+ // ADD MORE OBJECTS, POSSIBLY ADD BASKETBALL THAT SAYS "I WON'T NEED THIS"
 class livingroomScene extends AdventureScene {
     constructor() {
         super('Livingroom')
@@ -304,6 +298,7 @@ class livingroomScene extends AdventureScene {
         this.load.path = 'assets/';
         this.load.image('livingroom', 'LivingRoom.jpg')
         this.load.image('bookbag', 'bookbag.png')
+        this.load.image('exitarrow', 'leftarrow.png')
     }
 
     onEnter() {
@@ -312,7 +307,7 @@ class livingroomScene extends AdventureScene {
 
         let bookbagItem = this.add.image(950, 625, 'bookbag');
             bookbagItem.setScale(6);
-            bookbagItem.setInteractive();
+            bookbagItem.setInteractive({useHandCursor: true});
             bookbagItem.on("pointerover", () => this.showMessage("My bookbag"));
             bookbagItem.on("pointerdown", () => {
                 this.showMessage("I'll definitely need this");
@@ -324,6 +319,11 @@ class livingroomScene extends AdventureScene {
                     onComplete: () => bookbagItem.destroy()
                 });
             })
+
+        let doorArrow = this.add.image(200, 800, 'exitarrow');
+            doorArrow.setScale(6);
+            doorArrow.setAngle(90);
+            doorArrow.setInteractive({useHandCursor: true});
     }
 }
 // outro scene, fading to black from outside stairs as the player completes the game

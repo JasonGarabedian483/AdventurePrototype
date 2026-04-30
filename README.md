@@ -10,7 +10,7 @@ Code requirements:
     - introScene
     - outroScene
 - **2+ methods or other enhancement added to the adventure game engine to simplify my scenes**:
-    - Enhancement 1: unsatisfied (name the method and explain the use of it).
+    - Enhancement 1: getBigger(target): simplifies a tween that makes an object larger when called, used when hovering over an object
     - Enhancement 2: unsatisfied (name the method and explain the use of it).
 
 Experience requirements:
