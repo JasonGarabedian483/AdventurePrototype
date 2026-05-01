@@ -123,7 +123,7 @@ class Intro extends Phaser.Scene {
 
 class bedroomScene extends AdventureScene {
     constructor() {
-        super('Bedroom')
+        super('Bedroom', 'Bedroom')
     }
     
     preload() {
@@ -201,7 +201,7 @@ class bedroomScene extends AdventureScene {
 
 class hallwayScene extends AdventureScene {
     constructor () {
-        super('Hallway')
+        super('Hallway', 'Hallway')
     }
 
     preload() {
@@ -259,7 +259,7 @@ class hallwayScene extends AdventureScene {
 
 class livingroomScene extends AdventureScene {
     constructor() {
-        super('Livingroom')
+        super('Livingroom', 'Living Room')
     }
 
     preload() {
@@ -341,7 +341,7 @@ class livingroomScene extends AdventureScene {
 
 class kitchenScene extends AdventureScene {
     constructor() {
-        super('Kitchen')
+        super('Kitchen', 'Kitchen')
     }
 
     preload() {
