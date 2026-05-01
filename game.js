@@ -287,6 +287,7 @@ class livingroomScene extends AdventureScene {
         this.load.image('livingroom', 'LivingRoom.jpg')
         this.load.image('bookbag', 'bookbag.png')
         this.load.image('exitarrow', 'leftarrow.png')
+        this.load.image('basketball', 'basketball.png')
     }
 
     onEnter() {
@@ -314,6 +315,20 @@ class livingroomScene extends AdventureScene {
                     duration: 250,
                     onComplete: () => bookbagItem.destroy()
                 });
+            })
+        
+        let basketballItem = this.add.image(650, 825, 'basketball');
+            basketballItem.setScale(6);
+            basketballItem.setInteractive({useHandCursor: true});
+            basketballItem.on("pointerover", () => {
+                this.showMessage("A small basketball for a door hoop");
+                this.getBigger(basketballItem);
+            })
+            basketballItem.on("pointerout", () => {
+                this.getSmaller(basketballItem);
+            })
+            basketballItem.on("pointerdown", () => {
+                this.showMessage("I probably don't have time to play with this");
             })
 
         let doorArrow = this.add.image(200, 800, 'exitarrow');
@@ -356,6 +371,7 @@ class kitchenScene extends AdventureScene {
         this.load.image('poptart', 'poptart.png')
         this.load.image('kitchen', 'kitchenimage.jpg')
         this.load.image('backarrow', 'leftarrow.png')
+        this.load.image('plate', 'plate.png')
     }
 
     onEnter() {
@@ -397,7 +413,22 @@ class kitchenScene extends AdventureScene {
                     duration: 250,
                     onComplete: () => poptartImage.destroy()
                 });
-            })
+            });
+
+        let plateImage = this.add.image(600, 725, 'plate');
+            plateImage.setScale(4);
+            plateImage.setAngle(335);
+            plateImage.setInteractive({useHandCursor: true});
+            plateImage.on("pointerover", () => {
+                this.showMessage("A plate for food");
+                this.getBigger(plateImage);
+            });
+            plateImage.on("pointerout", () => {
+                this.getSmaller(plateImage);
+            });
+            plateImage.on("pointerdown", () => {
+                this.showMessage("I don't have time to sit down and eat, I need to go now!");
+            });
     }
 }
 // outro scene, fading to black from outside stairs as the player completes the game
