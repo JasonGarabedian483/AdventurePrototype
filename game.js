@@ -174,19 +174,13 @@ class bedroomScene extends AdventureScene {
             exitArrow.setScale(6);
             exitArrow.setInteractive({useHandCursor: true});
             exitArrow.on("pointerover", () => {
+                this.getBigger(exitArrow);
                 if (this.hasItem("💳 Wallet") && this.hasItem("📱 Phone")) {
                     this.showMessage("To the hallway..");
                 }
                 else {
                     this.showMessage("I'm missing something...");
                 }
-                this.tweens.add({
-                    targets: exitArrow,
-                    scaleX: 6.5,
-                    scaleY: 6.5,
-                    duration: 100,
-                    ease: 'Power1'
-                })
             })
 
             exitArrow.on("pointerout", () => {
@@ -256,19 +250,13 @@ class hallwayScene extends AdventureScene {
             exitArrow.setAngle(180);
             exitArrow.setInteractive({useHandCursor: true});
             exitArrow.on("pointerover", () => {
+                this.getBigger(exitArrow);
                 if (this.hasItem("🦷 Teeth cleaned")) {
                     this.showMessage("To the living room");
                 }
                 else {
                     this.showMessage("I should really brush my teeth");
                 }
-                this.tweens.add({
-                    targets: exitArrow,
-                    scaleX: 6.5,
-                    scaleY: 6.5,
-                    duration: 100,
-                    ease: 'Power1'
-                })
             })
 
             exitArrow.on("pointerout", () => {
@@ -308,7 +296,15 @@ class livingroomScene extends AdventureScene {
         let bookbagItem = this.add.image(950, 625, 'bookbag');
             bookbagItem.setScale(6);
             bookbagItem.setInteractive({useHandCursor: true});
-            bookbagItem.on("pointerover", () => this.showMessage("My bookbag"));
+            bookbagItem.on("pointerover", () => {
+                this.showMessage("My bookbag")
+                this.getBigger(bookbagItem);
+                });
+
+            bookbagItem.on("pointerout", () => {
+                this.getSmaller(bookbagItem);
+            });
+
             bookbagItem.on("pointerdown", () => {
                 this.showMessage("I'll definitely need this");
                 this.gainItem('🎒 Bookbag');
@@ -324,6 +320,84 @@ class livingroomScene extends AdventureScene {
             doorArrow.setScale(6);
             doorArrow.setAngle(90);
             doorArrow.setInteractive({useHandCursor: true});
+            doorArrow.on("pointerover", () => {
+                this.getBigger(doorArrow);
+                if (this.hasItem("💳 Wallet") && this.hasItem("📱 Phone") && this.hasItem("🦷 Teeth cleaned") && this.hasItem("🎒 Bookbag") && this.hasItem("🥪 Breakfast")) {
+                    this.showMessage("All ready to go to class");
+                }
+                else {
+                    this.showMessage("I'm missing something...");
+                }
+            });
+        
+        let kitchenArrow = this.add.image(1250, 400, 'exitarrow');
+            kitchenArrow.setScale(3.5);
+            kitchenArrow.setInteractive({useHandCursor: true});
+            kitchenArrow.on("pointerover", () => {
+                this.getBigger(kitchenArrow);
+                this.showMessage("To the kitchen");
+            })
+            kitchenArrow.on("pointerout", () => {
+                this.getSmaller(kitchenArrow);
+            })
+            kitchenArrow.on("pointerdown", () => {
+                this.gotoScene('Kitchen');
+            })
+    }
+}
+
+class kitchenScene extends AdventureScene {
+    constructor() {
+        super('Kitchen')
+    }
+
+    preload() {
+        this.load.path = 'assets/';
+        this.load.image('poptart', 'poptart.png')
+        this.load.image('kitchen', 'kitchenimage.jpg')
+        this.load.image('backarrow', 'leftarrow.png')
+    }
+
+    onEnter() {
+        let kitchenImage = this.add.image(this.game.config.width * .375, this.game.config.height * .5, 'kitchen');
+            kitchenImage.setScale(.25);
+        
+        let backArrow = this.add.image(1250, 900, 'backarrow');
+            backArrow.setScale(6);
+            backArrow.setAngle(300);
+            backArrow.setInteractive({useHandCursor: true});
+            backArrow.on("pointerover", () => {
+                this.showMessage("Back to living room");
+                this.getBigger(backArrow);
+            })
+            backArrow.on("pointerout", () => {
+                this.getSmaller(backArrow);
+            })
+            backArrow.on("pointerdown", () => {
+                this.gotoScene('Livingroom');
+            })
+
+        let poptartImage = this.add.image(425, 815, 'poptart');
+            poptartImage.setScale(4);
+            poptartImage.setAngle(320);
+            poptartImage.setInteractive({useHandCursor: true});
+            poptartImage.on("pointerover", () => {
+                this.showMessage("Some breakfast");
+                this.getBigger(poptartImage);
+            })
+            poptartImage.on("pointerout", () => {
+                this.getSmaller(poptartImage);
+            })
+            poptartImage.on("pointerdown", () => {
+                this.showMessage("Probably smart to grab some quick food to go");
+                this.gainItem("🥪 Breakfast");
+                this.tweens.add({
+                    targets: poptartImage,
+                    alpha: 0,
+                    duration: 250,
+                    onComplete: () => poptartImage.destroy()
+                });
+            })
     }
 }
 // outro scene, fading to black from outside stairs as the player completes the game
@@ -346,7 +420,7 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    scene: [Intro, bedroomScene, hallwayScene, livingroomScene, Demo1, Demo2, Outro],
+    scene: [Intro, bedroomScene, hallwayScene, livingroomScene, kitchenScene, Demo1, Demo2, Outro],
     title: "Adventure Game",
 });
 

@@ -1,27 +1,37 @@
 A simple adventure game by {who?} based on a simple adventure game engine by [Adam Smith](https://github.com/rndmcnlly).
 
 Code requirements:
-- **4+ scenes based on `AdventureScene`**: unsatisfied (name at least 4 of the classes).
+- **4+ scenes based on `AdventureScene`**: 
     - bedroomScene
     - hallwayScene
     - livingroomScene
     - kitchenScene
-- **2+ scenes *not* based on `AdventureScene`**: unsatisfied (name the classes).
+- **2+ scenes *not* based on `AdventureScene`**:
     - introScene
     - outroScene
 - **2+ methods or other enhancement added to the adventure game engine to simplify my scenes**:
-    - Enhancement 1: getBigger(target): simplifies a tween that makes an object larger when called, used when hovering over an object
-    - Enhancement 2: unsatisfied (name the method and explain the use of it).
+    - Enhancement 1: getBigger(target): Automates the process of an object increasing in size when the player mouses over it.
+    - Enhancement 2: getSmaller(target): Automates the process of an object decreasing in size when the player stops mousing over it.
 
 Experience requirements:
-- **4+ locations in the game world**: unsatisfied (name at least 4 of the classes).
-- **2+ interactive objects in most scenes**: unsatisfied (describe two examples)
-- **Many objects have `pointerover` messages**: unsatisfied (describe two examples)
-    - Navigation arrows increase in size when player mouses over them
-- **Many objects have `pointerdown` effects**: unsatisfied (describe two examples)
-    - Navigation arrows
-    - Picking up items
-- **Some objects are themselves animated**: unsatisfied (describe two examples)
+- **4+ locations in the game world**: 
+    - Bedroom
+    - Hallway
+    - Kitchen
+    - Living Room
+    - Outside
+- **2+ interactive objects in most scenes**:
+    - Bedroom: The bedroom where the player starts has two interactive objects being the phone and the wallet, along with the navigation arrow to move them to the next scene
+    - Living room: The living room has two interactive objects, one of which is not needed to finish the game, along with two navigation arrows.
+- **Many objects have `pointerover` messages**: 
+    - Navigation arrows will give a short description of where it will take the player
+    - Pointerover messages for things like objects will tell the player what the object is that they're picking up.
+- **Many objects have `pointerdown` effects**:
+    - Navigation arrows navigate between scenes when clicked on 
+    - Picking up items are moved to inventory when clicked on
+- **Some objects are themselves animated**:
+    - Navigation arrows and objects will increase and decrease in size as they are hovered over.
+    - As objects are picked up and moved into the inventory, they will fade out of the screen
 
 Asset sources:
 - Background photos taken by me (Jason Garabedian)

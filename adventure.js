@@ -114,6 +114,16 @@ class AdventureScene extends Phaser.Scene {
         });
     }
 
+    getSmaller(target) {
+        this.tweens.add({
+            targets: target,
+            scaleX: target.scaleX - 0.5,
+            scaleY: target.scaleY - 0.5,
+            duration: 100,
+            ease: 'Power1'
+        });
+    }
+
     /**
      * Re-render the inventory panel. Called automatically by
      * {@link AdventureScene#gainItem} and {@link AdventureScene#loseItem};
