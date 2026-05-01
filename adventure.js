@@ -104,6 +104,10 @@ class AdventureScene extends Phaser.Scene {
         });
     }
 
+    /**
+     * Increases the size of an object by .5 when called
+     * @param {*} target : the object to be changed
+     */
     getBigger(target) {
         this.tweens.add({
             targets: target,
@@ -114,6 +118,10 @@ class AdventureScene extends Phaser.Scene {
         });
     }
 
+    /**
+     * Decreases the size of an object by .5 when called
+     * @param {*} target : the object to be changed
+     */
     getSmaller(target) {
         this.tweens.add({
             targets: target,
