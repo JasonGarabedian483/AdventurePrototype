@@ -55,12 +55,7 @@ class bedroomScene extends AdventureScene {
             phoneItem.on("pointerdown", () => {
                 this.showMessage("Wouldn't want to forget that");
                 this.gainItem('📱 Phone');
-                this.tweens.add({
-                    targets: phoneItem,
-                    alpha: 0,
-                    duration: 250,
-                    onComplete: () => phoneItem.destroy()
-                });
+                this.collectItem(phoneItem);
             })
 
         let walletItem = this.add.image(1150, 700, 'wallet');
@@ -75,12 +70,7 @@ class bedroomScene extends AdventureScene {
             walletItem.on("pointerdown", () => {
                 this.showMessage("Can't get back in without my ID");
                 this.gainItem('💳 Wallet');
-                this.tweens.add({
-                    targets: walletItem,
-                    alpha: 0,
-                    duration: 250,
-                    onComplete: () => walletItem.destroy()
-                });
+                this.collectItem(walletItem);
             })
         
         let exitArrow = this.add.image(400, 300, 'exitArrow');
@@ -132,12 +122,7 @@ class hallwayScene extends AdventureScene {
             toothbrushImage.on("pointerdown", () => {
                 this.showMessage("Ahh, minty fresh");
                 this.gainItem("🦷 Teeth cleaned");
-                this.tweens.add({
-                    targets: toothbrushImage,
-                    alpha: 0,
-                    duration: 250,
-                    onComplete: () => toothbrushImage.destroy()
-                })
+                this.collectItem(toothbrushImage);
             })
             
         let exitArrow = this.add.image(300, 200, 'leftarrow');
@@ -190,12 +175,7 @@ class livingroomScene extends AdventureScene {
             bookbagItem.on("pointerdown", () => {
                 this.showMessage("I'll definitely need this");
                 this.gainItem('🎒 Bookbag');
-                this.tweens.add({
-                    targets: bookbagItem,
-                    alpha: 0,
-                    duration: 250,
-                    onComplete: () => bookbagItem.destroy()
-                });
+                this.collectItem(bookbagItem);
             })
         
         let basketballItem = this.add.image(650, 825, 'basketball');
@@ -283,16 +263,10 @@ class kitchenScene extends AdventureScene {
                 this.getBigger(poptartImage);
             })
             poptartImage.on("pointerout", () => this.getSmaller(poptartImage));
-
             poptartImage.on("pointerdown", () => {
                 this.showMessage("Probably smart to grab some quick food to go");
                 this.gainItem("🥪 Breakfast");
-                this.tweens.add({
-                    targets: poptartImage,
-                    alpha: 0,
-                    duration: 250,
-                    onComplete: () => poptartImage.destroy()
-                });
+                this.collectItem(poptartImage);
             });
 
         let plateImage = this.add.image(600, 725, 'plate');
@@ -309,7 +283,6 @@ class kitchenScene extends AdventureScene {
             });
     }
 }
-// outro scene, fading to black from outside stairs as the player completes the game
 class Outro extends Phaser.Scene {
     constructor() {
         super('Outside');

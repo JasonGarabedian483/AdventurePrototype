@@ -12,6 +12,7 @@ Code requirements:
 - **2+ methods or other enhancement added to the adventure game engine to simplify my scenes**:
     - Enhancement 1: getBigger(target): Automates the process of an object increasing in size when the player mouses over it.
     - Enhancement 2: getSmaller(target): Automates the process of an object decreasing in size when the player stops mousing over it.
+    - Enhancement 3: collectItem(target): Automates the tween that fades an object to 0 alpha then calls target.destroy().
 
 Experience requirements:
 - **4+ locations in the game world**: 

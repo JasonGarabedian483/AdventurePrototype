@@ -133,6 +133,19 @@ class AdventureScene extends Phaser.Scene {
     }
 
     /**
+     * Fades item away then 'destroys' it after player clicks on it to gain it.
+     * @param {*} target : the object to be destroyed
+     */
+    collectItem(target) {
+        this.tweens.add({
+            targets: target,
+            alpha: 0,
+            duration: 250,
+            onComplete: () => target.destroy()
+        });
+    }
+
+    /**
      * Re-render the inventory panel. Called automatically by
      * {@link AdventureScene#gainItem} and {@link AdventureScene#loseItem};
      * you generally do not need to call this yourself.
