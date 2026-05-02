@@ -37,7 +37,6 @@ class bedroomScene extends AdventureScene {
         this.load.image('phone', 'phone.png')
         this.load.image('wallet', 'wallet.png')
         this.load.image('exitArrow', 'leftarrow.png')
-        this.load.audio('button', 'button.mp3')
     }
 
     onEnter() {
@@ -89,7 +88,6 @@ class bedroomScene extends AdventureScene {
             exitArrow.on("pointerout", () => this.getSmaller(exitArrow));
             exitArrow.on("pointerdown", () => {
                 if (this.hasItem("💳 Wallet") && this.hasItem("📱 Phone")) {
-                    this.sound.play('button');
                     this.gotoScene('Hallway');
                 }
             })
@@ -106,7 +104,6 @@ class hallwayScene extends AdventureScene {
         this.load.image('hallway', 'Hallway.jpg')
         this.load.image('brushteeth', 'brushteeth.png')
         this.load.image('leftarrow', "leftarrow.png")
-        this.load.audio('button', 'button.mp3')
     }
 
     onEnter() {
@@ -144,7 +141,6 @@ class hallwayScene extends AdventureScene {
             exitArrow.on("pointerout", () => this.getSmaller(exitArrow));
             exitArrow.on("pointerdown", () => {
                 if (this.hasItem("🦷 Teeth cleaned")) {
-                    this.sound.play('button');
                     this.gotoScene('Livingroom')
                 }
             })
@@ -162,7 +158,6 @@ class livingroomScene extends AdventureScene {
         this.load.image('bookbag', 'bookbag.png')
         this.load.image('exitarrow', 'leftarrow.png')
         this.load.image('basketball', 'basketball.png')
-        this.load.audio('button', 'button.mp3')
     }
 
     onEnter() {
@@ -211,7 +206,6 @@ class livingroomScene extends AdventureScene {
             doorArrow.on("pointerout", () => this.getSmaller(doorArrow));
             doorArrow.on("pointerdown", () => {
                 if (this.hasItem("💳 Wallet") && this.hasItem("📱 Phone") && this.hasItem("🦷 Teeth cleaned") && this.hasItem("🎒 Bookbag") && this.hasItem("🥪 Breakfast")) {
-                    this.sound.play('button');
                     this.gotoScene("Outside");
                 }
             });
@@ -225,7 +219,6 @@ class livingroomScene extends AdventureScene {
             });
             kitchenArrow.on("pointerout", () => this.getSmaller(kitchenArrow));
             kitchenArrow.on("pointerdown", () => {
-                this.sound.play('button');
                 this.gotoScene('Kitchen');
             });
     }
@@ -242,7 +235,6 @@ class kitchenScene extends AdventureScene {
         this.load.image('kitchen', 'kitchenimage.jpg')
         this.load.image('backarrow', 'leftarrow.png')
         this.load.image('plate', 'plate.png')
-        this.load.audio('button', 'button.mp3')
     }
 
     onEnter() {
@@ -259,7 +251,6 @@ class kitchenScene extends AdventureScene {
             })
             backArrow.on("pointerout", () => this.getSmaller(backArrow));
             backArrow.on("pointerdown", () => {
-                this.sound.play('button');  
                 this.gotoScene('Livingroom');
             })
 
