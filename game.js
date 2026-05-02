@@ -242,7 +242,6 @@ class kitchenScene extends AdventureScene {
         this.load.image('kitchen', 'kitchenimage.jpg')
         this.load.image('backarrow', 'leftarrow.png')
         this.load.image('plate', 'plate.png')
-        this.load.audio('button', 'button.mp3')
     }
 
     onEnter() {
@@ -259,7 +258,6 @@ class kitchenScene extends AdventureScene {
             })
             backArrow.on("pointerout", () => this.getSmaller(backArrow));
             backArrow.on("pointerdown", () => {
-                this.sound.play('button');
                 this.gotoScene('Livingroom');
             })
 
